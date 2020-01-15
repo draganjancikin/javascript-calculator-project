@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
     <link rel="stylesheet" href="css/calculator.css">
+    <script src="js/main.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -11,7 +12,7 @@
         0
         </section>
     
-        <section class="calc-buttons">
+        <section class="calc-buttons" onclick="handleClick(event)">
             <div class="calc-button-row">
                 <button class="calc-button double ">C</button>
                 <button class="calc-button">&larr;</button>
