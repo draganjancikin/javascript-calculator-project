@@ -51,40 +51,15 @@ const handleClick = (e) => {
         case '÷': {
             const displayValue = getDisplayValue();
             if (displayValue) {
-                if (/[\+\-×÷]/.test(displayValue)) {
-                    alert('Already has function');
-                    break;
-                }
                 setDisplayValue(thing);
             }
             break;
         }
         case '=': {
-            const displayValue = getDisplayValue();
-            if (!/\d$/.test(displayValue)) {
-                alert('Add number');
-                break;
-            }
-            const matches = displayValue.match(/(\d+)([^\d])(\d+)/);
-            const firstValue = matches[1];
-            const secondValue = matches[3];
-            const operation = matches[2];
-            let result;
-            switch (operation) {
-                case '+':
-                    result = parseInt(firstValue) + parseInt(secondValue);
-                    break;
-                case '-':
-                    result = parseInt(firstValue) - parseInt(secondValue);
-                    break;
-                case '×':
-                    result = parseInt(firstValue) * parseInt(secondValue);
-                    break;
-                case '÷':
-                    result = parseInt(firstValue) / parseInt(secondValue);
-                    break;
-            }
-            setDisplayValue(result, true);
+            const expression = getDisplayValue()
+                .replace('×', '*')
+                .replace('÷', '/');
+            setDisplayValue(eval(expression), true);
             shouldClear = true;
             break;
         }
